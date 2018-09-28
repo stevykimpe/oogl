@@ -10,7 +10,6 @@
 
 #include "OOGLException.hpp"    // Inclusion of the header file which declares the class and
                                 // features which get defined here.
-#include <cstring>
 
 
 
