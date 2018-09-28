@@ -91,5 +91,16 @@ std::map<oogl::ExceptionCode, std::string> oogl::OOGLException::s_mapExceptionCo
     }, {
         oogl::ExceptionCode::OOGL_HANDLER_NOT_CREATED,
         "A graphic library handler must have been created before being either accessed or deleted."
+    }, {
+        oogl::ExceptionCode::LIB_ALREADY_INIT,
+        "A graphic library has already been initialized ; it cannot be initialized twice."
+    }, {
+        oogl::ExceptionCode::LIB_NOT_INIT,
+        "Trying to exit an unitialized library."
+    }, {
+        oogl::ExceptionCode::OOGLHANDLER_NULL_OBJ_TRACK,
+        std::string("A trackable object, i.e. an object the graphic library handler will track")
+        + std::string("to be able to free all memory space, should not be given through the null")
+        + std::string("pointer.")
     }
 };

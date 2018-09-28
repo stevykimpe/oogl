@@ -45,7 +45,10 @@ namespace oogl
     {
         NO_EXCEPTION,                     ///!< No exception.
         OOGL_HANDLER_ALREADY_CREATED,     ///!< Trying to create a second graphic library handler.
-        OOGL_HANDLER_NOT_CREATED          ///!< Trying to destroy or access a non-created handler.
+        OOGL_HANDLER_NOT_CREATED,         ///!< Trying to destroy or access a non-created handler.
+        LIB_ALREADY_INIT,                 ///!< Trying to initialize several times a library.
+        LIB_NOT_INIT,                     ///!< Trying to exit an uninitialized library.
+        OOGLHANDLER_NULL_OBJ_TRACK        ///!< Trying to track an object pointed by nullptr.
     };
 
 

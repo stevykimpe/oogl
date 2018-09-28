@@ -6,16 +6,13 @@
 ///!           singleton pattern, so that any other classes of the framework can easily access the
 ///!           one and unique instance of the class.
 ///! \author   Stevy Kimpe
-///! \version  1.0
+///! \version  1.0.0
 ///! \see      oogl::OOGLHandler
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 #include "OOGLHandlerFactory.hpp"    // Inclusion of the header file which declares the class and
                                      // features which get defined here.
-
-// Other required includes
-#include "OOGLException.hpp"
 
 
 
