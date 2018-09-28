@@ -33,6 +33,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 namespace oogl
 {
+
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ///! \enum     ExceptionCode OOGLException.hpp
     ///! \brief    Enumerate the different exception code of the framework.
@@ -41,7 +43,9 @@ namespace oogl
     ////////////////////////////////////////////////////////////////////////////////////////////////
     enum ExceptionCode
     {
-        NO_EXCEPTION                       ///!< No exception.
+        NO_EXCEPTION,                     ///!< No exception.
+        OOGL_HANDLER_ALREADY_CREATED,     ///!< Trying to create a second graphic library handler.
+        OOGL_HANDLER_NOT_CREATED          ///!< Trying to destroy or access a non-created handler.
     };
 
 
@@ -125,12 +129,12 @@ namespace oogl
         ///! \brief  External function making it possible to get a more detailed exception message
         ///!         using the functions of the used external graphic library.
         ////////////////////////////////////////////////////////////////////////////////////////////
-        static std::function<std::string(void)>   getExternalExceptionMessage;
+        static std::function<std::string(void)>   s_getExternalExceptionMessage;
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         ///! \brief  Map associating the exception codes to the exception messages.
         ////////////////////////////////////////////////////////////////////////////////////////////
-        static std::map<ExceptionCode, std::string>    mapExceptionCodeMessage;
+        static std::map<ExceptionCode, std::string>    s_mapExceptionCodeMessage;
 
 
         ExceptionCode   m_code;    ///!< Code related to the exception

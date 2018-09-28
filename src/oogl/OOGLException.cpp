@@ -16,7 +16,7 @@
 //==================================================================================================
 // Set the static member with default value.
 //==================================================================================================
-std::function<std::string(void)> oogl::OOGLException::getExternalExceptionMessage
+std::function<std::string(void)> oogl::OOGLException::s_getExternalExceptionMessage
     = [] (void) { return std::string(""); };    // Default : no additional message to return
 
 // The map associating exception codes to exception
@@ -54,7 +54,7 @@ const char * oogl::OOGLException::what() const throw()
 {
     return (
         std::string(oogl::MessagedException::what()) + "\n"
-        + oogl::OOGLException::getExternalExceptionMessage()
+        + oogl::OOGLException::s_getExternalExceptionMessage()
     ).c_str();
 }
 
@@ -64,7 +64,7 @@ const char * oogl::OOGLException::what() const throw()
 //==================================================================================================
 void oogl::OOGLException::setExternalErrorFunction(std::function<std::string(void)> getError)
 {
-    getExternalExceptionMessage = getError;
+    s_getExternalExceptionMessage = getError;
 }
 
 
@@ -73,17 +73,23 @@ void oogl::OOGLException::setExternalErrorFunction(std::function<std::string(voi
 //==================================================================================================
 std::string oogl::OOGLException::getMessageFromCode(oogl::ExceptionCode code) noexcept
 {
-    return oogl::OOGLException::mapExceptionCodeMessage.at(code);
+    return oogl::OOGLException::s_mapExceptionCodeMessage.at(code);
 }
 
 
 //==================================================================================================
 // Build the map associating the exception codes to exception messages
 //==================================================================================================
-std::map<oogl::ExceptionCode, std::string> oogl::OOGLException::mapExceptionCodeMessage =
+std::map<oogl::ExceptionCode, std::string> oogl::OOGLException::s_mapExceptionCodeMessage =
 {
     {
         oogl::ExceptionCode::NO_EXCEPTION,
         "No detailed exception message."
+    }, {
+        oogl::ExceptionCode::OOGL_HANDLER_ALREADY_CREATED,
+        "A graphic library handler already exist ; you cannot create another one."
+    }, {
+        oogl::ExceptionCode::OOGL_HANDLER_NOT_CREATED,
+        "A graphic library handler must have been created before being either accessed or deleted."
     }
 };
