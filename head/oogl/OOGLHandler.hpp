@@ -20,7 +20,8 @@
 
 // Project include list
 #include "ITrackableObject.hpp"
-#include "OOGLException.hpp"
+//#include "OOGLHandlerFactory.hpp"
+//#include "OOGLException.hpp"
 
 
 
@@ -34,6 +35,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 namespace oogl
 {
+
+
+    // Forward classes declaration
+    class OOGLHandlerFactory;
+    class OOGLException;
+    
+    
+    #ifndef OOGL_MEDIASYSTEM_ENUM_DEFINED        // Guarantee the enumeration is only defined once
+    #define OOGL_MEDIASYSTEM_ENUM_DEFINED
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,11 +91,14 @@ namespace oogl
     }
 
 
+    #endif    // OOGL_MEDIASYSTEM_ENUM_DEFINED
+
+
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ///! \class    OOGLHandler OOGLHandler.hpp
-    ///! \brief    Abstract class defining the main features of the graphic library handlers, that
+    ///! \brief    Primitive class defining the main features of the graphic library handlers, that
     ///!           are objects in charge of the initialization of the given library, and a proper
     ///!           exit with memory space getting free.
     ///! \version  1.0.0
@@ -115,34 +128,35 @@ namespace oogl
         virtual void exit();
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-        ///! \brief         Activate the given system or combination of systems.
-        ///! \arg system    Flag associated with the system or combination of systems to activate.
-        ///! \return        A reference to the calling instance.
-        ///! \version       1.0.0
+        ///! \brief           Activate the given system or combination of systems.
+        ///! \param system    Flag associated with the system or combination of systems to activate.
+        ///! \return          A reference to the calling instance.
+        ///! \version         1.0.0
         ////////////////////////////////////////////////////////////////////////////////////////////
         virtual OOGLHandler & activateSystem(MediaSystem system) noexcept;
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-        ///! \brief         Deactivate the given system or combination of systems.
-        ///! \arg system    Flag associated with the system or combination of systems to deactivate.
-        ///! \return        A reference to the calling instance.
-        ///! \version       1.0.0
+        ///! \brief           Deactivate the given system or combination of systems.
+        ///! \param system    Flag associated with the system or combination of systems to
+        ///!                  deactivate.
+        ///! \return          A reference to the calling instance.
+        ///! \version         1.0.0
         ////////////////////////////////////////////////////////////////////////////////////////////
         virtual OOGLHandler & deactivateSystem(MediaSystem system) noexcept;
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-        ///! \brief         Give a new trackable object to keep trace on to the GL handler.
-        ///! \arg object    Object to get tracked by the graphic library handler.
-        ///! \return        A reference to the calling instance.
-        ///! \version       1.0.0
+        ///! \brief           Give a new trackable object to keep trace on to the GL handler.
+        ///! \param object    Object to get tracked by the graphic library handler.
+        ///! \return          A reference to the calling instance.
+        ///! \version         1.0.0
         ////////////////////////////////////////////////////////////////////////////////////////////
         virtual OOGLHandler & track(ITrackableObject * object) noexcept;
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-        ///! \brief         Delete a trackable object from the track list of the GL handler.
-        ///! \arg object    Object to get untracked by the graphic library handler.
-        ///! \return        A reference to the calling instance.
-        ///! \version       1.0.0
+        ///! \brief           Delete a trackable object from the track list of the GL handler.
+        ///! \param object    Object to get untracked by the graphic library handler.
+        ///! \return          A reference to the calling instance.
+        ///! \version         1.0.0
         ////////////////////////////////////////////////////////////////////////////////////////////
         virtual OOGLHandler & untrack(ITrackableObject * object) noexcept;
 
@@ -169,7 +183,8 @@ namespace oogl
         ~OOGLHandler() = default;
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-        ///! \brief    Get the combination of flags furnishing the activated systems.
+        ///! \brief    Get the combination of flags furnishing the activated systems. Accessible
+        ///!           from child classes.
         ///! \version  1.0.0
         ///! \see      oogl::OOGLHandler::m_systems
         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,6 +196,9 @@ namespace oogl
         // For the same reasons, no assignement operator are wanted.
         OOGLHandler & operator=(OOGLHandler const &) = delete;
 
+        // Friend class : factory class which need to access constructor/destructor
+        friend class oogl::OOGLHandlerFactory;
+
 
 
         private:
@@ -190,7 +208,6 @@ namespace oogl
 
         std::set<oogl::ITrackableObject *>    m_tracker;    /*!< Set in charge of the trackable
                                                              *   objects pointers storage.   */
-
 
     };
 

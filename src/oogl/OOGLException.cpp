@@ -102,5 +102,13 @@ std::map<oogl::ExceptionCode, std::string> oogl::OOGLException::s_mapExceptionCo
         std::string("A trackable object, i.e. an object the graphic library handler will track")
         + std::string("to be able to free all memory space, should not be given through the null")
         + std::string("pointer.")
+    }, {
+        oogl::ExceptionCode::WIN_ALREADY_CREATED,
+        std::string("The call of the method \\create\\ is make several times for a unique window.")
+        + std::string(" A Window instance can only call this method once without calling")
+        + std::string(" \\destroy\\.")
+    }, {
+        oogl::ExceptionCode::WIN_NOT_CREATED,
+        "The Window instance which calls \\destroy\\ has not called \\create\\ before."
     }
 };

@@ -35,6 +35,9 @@ namespace oogl
 {
 
 
+    #ifndef OOGL_EXCEPTIONCODE_ENUM_DEFINED        // Guarantee the enumeration is only defined once
+    #define OOGL_EXCEPTIONCODE_ENUM_DEFINED
+    
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ///! \enum     ExceptionCode OOGLException.hpp
     ///! \brief    Enumerate the different exception code of the framework.
@@ -48,8 +51,15 @@ namespace oogl
         OOGL_HANDLER_NOT_CREATED,         ///!< Trying to destroy or access a non-created handler.
         LIB_ALREADY_INIT,                 ///!< Trying to initialize several times a library.
         LIB_NOT_INIT,                     ///!< Trying to exit an uninitialized library.
-        OOGLHANDLER_NULL_OBJ_TRACK        ///!< Trying to track an object pointed by nullptr.
+        OOGLHANDLER_NULL_OBJ_TRACK,       ///!< Trying to track an object pointed by nullptr.
+        WIN_ALREADY_CREATED,              ///!< Trying to create an already created window.
+        WIN_NOT_CREATED                   ///!< Trying to destroy a non created window.
     };
+
+
+    #endif    // OOGL_WINDOWOPTION_ENUM_DEFINED
+
+
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

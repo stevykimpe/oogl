@@ -11,6 +11,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+// Include list
+#include "OOGLException.hpp"
+#include "OOGLHandler.hpp"
+
 #include "OOGLHandlerFactory.hpp"    // Inclusion of the header file which declares the class and
                                      // features which get defined here.
 
@@ -34,7 +38,7 @@ void oogl::OOGLHandlerFactory::createGraphicLibraryHandler(oogl::GraphicLibrary 
 
     // According to the specified library, the right constructor gets called.
     if (/* Library test */true) {           // TO DO!
-        ;
+        //new;
     } else {
         ;
     }
@@ -52,7 +56,7 @@ void oogl::OOGLHandlerFactory::destroyGraphicLibraryHandler()
     }
 
     // Exit properly the library system
-    s_graphicLibraryHandler->exit();
+    delete s_graphicLibraryHandler;
 
     // Delete the pointer to the instance
     s_graphicLibraryHandler = nullptr;

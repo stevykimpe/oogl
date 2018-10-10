@@ -50,19 +50,19 @@ namespace oogl
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         ///! \brief                        Method, to be implemented in child classes, for an object
-        ///!                               to get properly created.
-        ///! \throw oogl::OOGLException    When there is a failure during the creation process.
+        ///!                               to get properly initialized.
+        ///! \throw oogl::OOGLException    When there is a failure in the initialization process.
         ///! \version                      1.0.0
         ////////////////////////////////////////////////////////////////////////////////////////////
-        virtual void create() = 0;
+        virtual void init() = 0;
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         ///! \brief                        Method, to be implemented in child classes, for an object
-        ///!                               to get properly destroyed without memory leak.
-        ///! \throw oogl::OOGLException    When there is a failure during the destruction process.
+        ///!                               to get properly free without memory leak.
+        ///! \throw oogl::OOGLException    When there is a failure during the liberation process.
         ///! \version                      1.0.0
         ////////////////////////////////////////////////////////////////////////////////////////////
-        virtual void destroy() = 0;
+        virtual void free() = 0;
 
     };
 

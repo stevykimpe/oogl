@@ -24,8 +24,7 @@
 #define OOGL_OOGLHANDLERFACTORY_HPP_INCLUDED
 
 
-// Include list
-#include "OOGLHandler.hpp"
+// No includes : simple forward class declaration
 
 
 
@@ -40,6 +39,10 @@
 namespace oogl
 {
 
+    
+    // Forward declaration
+    class OOGLHandler;
+    
     
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ///! \enum     GraphicLibrary OOGLHandlerFactory.hpp
@@ -77,7 +80,7 @@ namespace oogl
         ////////////////////////////////////////////////////////////////////////////////////////////
         ///! \brief                        Create if possible a new graphic library handler that is
         ///!                               specified through the input label.
-        ///! \arg library                  Label associated to the library to use, the library
+        ///! \param library                Label associated to the library to use, the library
         ///!                               handler will get created according to the chosen library.
         ///! \throw oogl::OOGLException    When the factory is asked to create a new graphic
         ///!                               library handler instance while there already is one.

@@ -10,6 +10,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+// Include list
+#include "OOGLException.hpp"
+#include "OOGLHandlerFactory.hpp"
+
 #include "OOGLHandler.hpp"    // Inclusion of the header file which declares the class and
                               // features which get defined here.
 
@@ -48,7 +52,7 @@ void oogl::OOGLHandler::exit()
     // Destroy the tracked objects
     std::set<ITrackableObject*>::iterator objectIt;
     for (objectIt = m_tracker.begin(); objectIt != m_tracker.end(); objectIt++) {
-        (*objectIt)->destroy();
+        (*objectIt)->free();
     }
 
     m_tracker = std::set<ITrackableObject*>();  // Make the tracker set empty
@@ -89,7 +93,7 @@ oogl::OOGLHandler & oogl::OOGLHandler::deactivateSystem(MediaSystem system) noex
 
     if (system == oogl::MediaSystem::ALL) {              // deactivate all the system using one flag
         m_systems = oogl::MediaSystem::NONE;
-    } else if (m_systems != oogl::MediaSystem::ALL) {    // there are systems left to deactivate
+    } else if (m_systems != oogl::MediaSystem::NONE) {   // there are systems left to deactivate
         m_systems = m_systems & (!system);
     }
 
